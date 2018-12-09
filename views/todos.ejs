@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="/css/main.css">
+
+    <title>Todos SSR</title>
+</head>
+
+<body>
+    <h1>Todos</h1>
+    <%=title  %>
+
+
+    <h4 class="add-btn">
+        <a href="/todo/edit">Add New</a>
+    </h4>
+    <ul class="todos-container">
+        <% todos.forEach(todo => { %>
+        <li class="todo">
+
+            <a href="/todo/<%=todo.id %>" class="<%= (todo.isDone)? 'done' : '' %>">
+                <%=todo.txt %>
+            </a>
+            <br>
+            <div class="btns">
+                <a class="btn" href="/todo/edit/<%=todo.id %>">EDIT</a>
+                
+                <form class="btn " action="/todo/delete" method="post">
+                    <input type="hidden" name="todoId" value="<%=todo.id %>">
+                    <button class="btn-delete" type="submit">x</button>
+                </form>
+            </div>
+
+        </li>
+        <% }); %>
+    </ul>
+
+
+</body>
+
+</html>
